@@ -70,3 +70,54 @@ public class Prob_9 {
         l1.display();
     }
 }
+
+
+
+//Solved on Code 360
+
+import java.util.* ;
+import java.io.*; 
+
+/************************************************************
+
+    Following is the linked list node structure
+    
+    class LinkedListNode<T> {
+    T data;
+    LinkedListNode<T> next;
+
+    public LinkedListNode(T data) {
+        this.data = data;
+    }
+}
+
+************************************************************/
+
+
+public class Solution {
+	
+	public static LinkedListNode<Integer> removeDuplicates(LinkedListNode<Integer> head) {
+
+        // Write your code here	
+
+        LinkedListNode<Integer> curr,prev;
+        prev=head;
+        curr=head.next;
+        HashMap<Integer,Integer> map=new HashMap<>();
+
+        map.put(prev.data,1);
+        while(curr!=null){
+            if(map.containsKey(curr.data)){
+                prev.next=curr.next;
+                curr=prev.next;
+            }else{
+                map.put(curr.data,1);
+                prev=prev.next;
+                curr=curr.next;
+            }
+        }
+
+        return head;
+	}
+
+}

@@ -4,19 +4,21 @@
 public class Prob_7 {
 
     public static boolean checkPalindrome(String str){
-        int start=0;
-        int end=str.length()-1;
-
-        while(start<end){
-            if(str.charAt(start)==str.charAt(end)){
-                start++;
-                end--;
-            }
-            else{
+        if(str.length()==1){
+            return true;
+        }
+        
+        int i=0;
+        int j=str.length()-1;
+        
+        while(i<=j){
+            if(str.charAt(i)!=str.charAt(j)){
                 return false;
             }
+            i++;
+            j--;
         }
-
+        
         return true;
 
     }

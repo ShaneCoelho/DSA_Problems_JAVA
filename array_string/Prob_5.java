@@ -3,18 +3,27 @@
 public class Prob_5 {
 
     public static void unique_character(String str){
-        for(int i=1;i<str.length();i++){
-            for(int j=0;j<str.length();j++){
-                if(str.charAt(i)==str.charAt(j)&&i!=j){
-                    System.out.println("The string does not contain unique characters");
-                    System.exit(0);
-                }
+
+        boolean[] arr=new boolean[128];
+        int i;
+
+        for(i=0;i<str.length();i++){
+            int asci=str.charAt(i);
+
+            if(arr[asci]==false){
+                arr[asci]=true;
+            }else{
+                System.out.println("The string has repeated characters");
+                break;
             }
         }
-        System.out.println("The string has unique characters");
+
+        if(i==str.length()){
+            System.out.println("The string has unique characters");
+        }
     }
     public static void main(String[] args) {
-        String str="aabgcde";
+        String str="abgcdee";
         unique_character(str);
     }
 }

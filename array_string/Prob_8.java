@@ -2,22 +2,26 @@
 
 public class Prob_8 {
 
-    public static int find_substr(String str, String substr){
-        if(str.length()<substr.length()){
+    public static int find_substr(String haystack, String needle){
+        if(haystack.length()<needle.length()){
             return -1;
         }
 
-        for(int i=0;i<str.length()-substr.length();i++){
+        int n=haystack.length();
+        int m=needle.length();
+
+        for(int i=0;i<=n-m;i++){
             int j;
-            for(j=0;j<substr.length();j++){
-                if(str.charAt(i+j)!=substr.charAt(j)){
+            for(j=0;j<m;j++){
+                if(needle.charAt(j)!=haystack.charAt(i+j)){
                     break;
                 }
             }
-            if(j==substr.length()){
+            if(j==m){
                 return i;
             }
         }
+
         return -1;
     }
     public static void main(String[] args) {

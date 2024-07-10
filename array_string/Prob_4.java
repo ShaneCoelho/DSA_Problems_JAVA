@@ -1,4 +1,4 @@
-/*Implement a function to perform string compression. */
+/*Implement a function to perform string compression. Also solved at Code360*/
 
 public class Prob_4 {
 
@@ -39,6 +39,10 @@ public class Prob_4 {
                 }
             }
         }
+
+        if(count>1){
+			comp2=comp2+count;
+		}
 
         System.out.println("Compression 2:"+comp2);
     }
