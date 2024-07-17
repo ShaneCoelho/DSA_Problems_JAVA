@@ -129,3 +129,40 @@ public class Prob_10 {
     }
 
 }
+
+
+//Leetcode problem
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ * int val;
+ * ListNode next;
+ * ListNode(int x) {
+ * val = x;
+ * next = null;
+ * }
+ * }
+ */
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode d1, d2;
+        d1 = headA;
+        d2 = headB;
+
+        while (d1 != d2) {
+            if (d1 == null) {
+                d1 = headB;
+                d2 = d2.next;
+            } else if (d2 == null) {
+                d2 = headA;
+                d1 = d1.next;
+            } else {
+                d1 = d1.next;
+                d2 = d2.next;
+            }
+        }
+
+        return d1;
+    }
+}
