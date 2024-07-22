@@ -105,3 +105,57 @@ public class Prob_13 {
 
     }
 }
+
+
+//Solved on Code360
+
+import java.io.*;
+import java.util.* ;
+
+/************************************************************
+
+    Following is the linked list node structure:
+    
+    class LinkedListNode<T> {
+        T data;
+        LinkedListNode<T> next;
+
+        public LinkedListNode(T data) {
+            this.data = data;
+        }
+    }
+
+************************************************************/
+
+public class Solution {
+	public static LinkedListNode<Integer> sortTwoLists(LinkedListNode<Integer> first, LinkedListNode<Integer> second) {
+		// Write your code here.
+        LinkedListNode<Integer> dummynode= new LinkedListNode<Integer>(-1);
+
+        LinkedListNode<Integer> temp=dummynode;
+
+        LinkedListNode<Integer> t1=first;
+        LinkedListNode<Integer> t2=second;
+
+        while(t1!=null && t2!=null){
+            if(t1.data<=t2.data){
+                temp.next=t1;
+                temp=temp.next;
+                t1=t1.next;
+            }else{
+                temp.next=t2;
+                temp=temp.next;
+                t2=t2.next;
+            }
+        }
+
+        if(t1==null){
+            temp.next=t2;
+        }else{
+            temp.next=t1;
+        }
+
+        return dummynode.next;
+
+	}
+}
