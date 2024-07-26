@@ -153,3 +153,77 @@ public class Prob_16 {
 
     }
 }
+
+
+//Solved on Code360
+
+/****************************************************************
+
+ Following is the class structure of the Node class:
+
+ class Node {
+     public int data;
+     public Node next;
+     public Node random;
+
+     Node()
+     {
+         this.data = 0;
+         this.next = null;
+         this.random = null;
+     }
+     Node(int data)
+     {
+         this.data = data;
+         this.next = null;
+         this.random = null;
+     }
+     Node(int data, Node next, Node random)
+     {
+         this.data = data;
+         this.next = next;
+         this.random = random;
+     }
+ }
+
+ *****************************************************************/
+
+ class Solution {
+    public static Node cloneLL(Node head) {
+        // Write your code here.
+
+        //Insert Copy nodes in between
+        Node temp=head;
+
+        while(temp!=null){
+            Node copy=new Node(temp.data);
+            copy.next=temp.next;
+            temp.next=copy;
+            temp=temp.next.next;
+        }
+
+        //Connect random pointers
+
+        temp = head;
+        while(temp!=null){
+            temp.next.random=temp.random;
+            temp=temp.next.next;
+        }
+
+        //Connect next pointer
+
+        temp=head;
+        Node dummyNode=new Node(-1);
+        Node res=dummyNode;
+
+        while(temp!=null){
+            res.next=temp.next;
+            res=res.next;
+            temp.next=temp.next.next;
+            temp=temp.next;
+        }
+
+
+        return dummyNode.next;
+    }
+}

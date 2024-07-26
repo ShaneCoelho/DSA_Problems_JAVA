@@ -96,3 +96,76 @@ public class Prob_15 {
 
     }
 }
+
+
+//Solved on Code360
+
+import java.util.* ;
+import java.io.*; 
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+    class LinkedListNode {
+        int data;
+        LinkedListNode next;
+        
+        public LinkedListNode(int data) {
+            this.data = data;
+        }
+    }
+
+*****************************************************************/
+
+
+class Solution {
+    static LinkedListNode addTwoNumbers(LinkedListNode head1, LinkedListNode head2) {
+        // Write your code here.
+        LinkedListNode p1=head1;
+        LinkedListNode p2=head2;
+
+        LinkedListNode dummyNode=new LinkedListNode(-1);
+
+         LinkedListNode temp=dummyNode;
+
+
+        int carry=0;
+        while(p1!=null || p2!=null){
+            int sum=carry;
+            if(p1!=null){
+                sum=sum+p1.data;
+            }
+            if(p2!=null){
+                sum=sum+p2.data;
+            }
+            if(sum>9){
+                carry=1;
+            }else{
+                carry=0;
+            }
+            int result=sum%10;
+            LinkedListNode node=new LinkedListNode(result);
+            temp.next=node;
+
+            temp=temp.next;
+
+            if(p1!=null){
+                p1=p1.next;
+            }
+
+            if(p2!=null){
+                p2=p2.next;
+            }
+
+
+        }
+
+        if(carry==1){
+            LinkedListNode node=new LinkedListNode(carry);
+            temp.next=node;
+            temp=temp.next;
+        }
+
+        return dummyNode.next;
+    }
+}
