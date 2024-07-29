@@ -57,3 +57,62 @@ class MinStack {
  * int param_3 = obj.top();
  * int param_4 = obj.getMin();
  */
+
+ //Solved without using extra space
+
+ class MinStack {
+
+    Stack<Long> st;
+    long min;
+
+    public MinStack() {
+        st=new Stack<>();
+        min=Long.MAX_VALUE;
+    }
+    
+    public void push(int val) {
+        long data=(long) val;
+        if(st.isEmpty()){
+            st.push(data);
+            min=data;
+        }else{
+            if(data<min){
+                st.push(2*data-min);
+                min=data;
+            }else{
+                st.push(data);
+            }
+        }
+    }
+    
+    public void pop() {
+        if(st.peek()<min){
+            min=2*min-st.peek();
+            st.pop();
+        }else{
+            st.pop();
+        }
+    }
+    
+    public int top() {
+        if(st.peek()<min){
+            return (int) min;
+        }else{
+            long data=st.peek();
+            return (int)data;
+        }
+    }
+    
+    public int getMin() {
+        return (int) min;
+    }
+}
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack obj = new MinStack();
+ * obj.push(val);
+ * obj.pop();
+ * int param_3 = obj.top();
+ * int param_4 = obj.getMin();
+ */

@@ -104,3 +104,83 @@ public class Prob_17 {
     }
 
 }
+
+
+//Solved on Code360
+
+/****************************************************************
+
+ Following is the class structure of the Node class:
+
+ class Node {
+     public int data;
+     public Node next;
+    
+     Node()
+     {
+         this.data = 0;
+         this.next = null;
+     }
+    
+     Node(int data)
+     {
+         this.data = data;
+         this.next = null;
+     }
+    
+     Node(int data, Node next)
+     {
+         this.data = data;
+         this.next = next;
+     }
+ }
+
+ *****************************************************************/
+
+ class Solution {
+
+    public static Node reverse(Node head){
+        Node temp=head;
+        Node prev=null;
+
+        while(temp!=null){
+            Node front=temp.next;
+            temp.next=prev;
+            prev=temp;
+            temp=front;
+        }
+
+        return prev;
+    }
+    public static boolean isPalindrome(Node head) {
+        // write your code here
+
+        Node fast=head;
+        Node slow=head;
+
+        while(fast.next!=null && fast.next.next!=null){
+            fast=fast.next.next;
+            slow=slow.next;
+            
+        }
+
+        Node newHead=reverse(slow.next);
+
+        Node first=head;
+        Node second=newHead;
+
+        while(second!=null){
+            if(first.data!=second.data){
+                reverse(newHead);
+                return false;
+            }
+
+            first=first.next;
+            second=second.next;
+        }
+
+        reverse(newHead);
+        return true;
+
+    }
+}
